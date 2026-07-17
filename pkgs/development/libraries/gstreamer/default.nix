@@ -3,6 +3,9 @@
   lib,
   newScope,
   apple-sdk,
+  ipu6ep-camera-hal,
+  ipu6epmtl-camera-hal,
+  ipu75xa-camera-hal,
 }:
 
 lib.makeScope newScope (
@@ -40,6 +43,14 @@ lib.makeScope newScope (
     icamerasrc-ipu6 = callPackage ./icamerasrc { };
     icamerasrc-ipu6ep = callPackage ./icamerasrc { };
     icamerasrc-ipu6epmtl = callPackage ./icamerasrc { };
+
+    icamerasrc-ipu7x = callPackage ./icamerasrc {
+      ipuVariant = "ipu7";
+    };
+    icamerasrc-ipu75xa = callPackage ./icamerasrc {
+      ipuVariant = "ipu7";
+      ipu7x-camera-hal = ipu75xa-camera-hal;
+    };
 
     # note: gst-python is in ../../python-modules/gst-python - called under python3Packages
   }
